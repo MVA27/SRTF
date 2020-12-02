@@ -60,6 +60,7 @@ void core(int arrayIndex){
 
     int i,m;
     int sizeOfArray = 0;
+	burstTimeStatus = 0;
 
     struct node *check = start;
     for(i=0;i<arrayIndex;i++)
@@ -128,6 +129,7 @@ void core(int arrayIndex){
 				burstTimeStatus = 1; //True means BurstTime is Zero.
 				saveIndividualCompletionTime = currentTime;	//Save this current time as it is Completion Time for that perticular process
             }
+			
         }
         check = check->next;
     }
@@ -145,7 +147,7 @@ void core(int arrayIndex){
 			//To Calculate Completion Time, add each time quantum whenever a process is selected and executed.
 			//Update the *start list as *listQueue nodes will we deleted at the end
 			check->CompletionTime = saveIndividualCompletionTime;
-			burstTimeStatus = 0;
+			//burstTimeStatus = 0;
         }
         check = check->next;
     }
@@ -264,7 +266,8 @@ void main()
     startTime = minimumArrivalTime;
     currentTime = startTime;
 
-
+	startTime = minimumArrivalTime;
+	currentTime = startTime;
     printf("\n %d ",startTime);
 
 
@@ -289,7 +292,9 @@ void main()
         core(arrayIndex);
         arrayIndex = 0 ;
 
-        if(currentTime == totalBurstTime)
+		//This is done because; if start time = 0 then whole execution will stop at totalBurstTime
+		//Else it will stop at totalBurstTime + startTime
+        if(currentTime == totalBurstTime+startTime)
         {
 			break;
 		}
