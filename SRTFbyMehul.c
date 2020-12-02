@@ -256,7 +256,8 @@ void main()
     startTime = minimumArrivalTime;
     currentTime = startTime;
 
-
+	startTime = minimumArrivalTime;
+	currentTime = startTime;
     printf("\n %d ",startTime);
 
 	
@@ -281,7 +282,7 @@ void main()
         core(arrayIndex);
         arrayIndex = 0 ;
 
-        if(currentTime == totalBurstTime)
+        if(currentTime == totalBurstTime+startTime)
         {
 			break;
 		}
